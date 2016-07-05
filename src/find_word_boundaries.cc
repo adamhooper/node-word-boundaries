@@ -8,6 +8,14 @@ void FindWordBoundaries(const v8::FunctionCallbackInfo<v8::Value>& args) {
   v8::Isolate* isolate = args.GetIsolate();
   v8::HandleScope scope(isolate);
 
+  v8::String::Value argString(args[0]);
+  v8::Handle<v8::Array> retArray(v8::Array::New(isolate, 0));
+  args.GetReturnValue().Set(retArray);
+
+  if (argString.length() == 0) {
+    return; // retArray is empty
+  }
+
   UErrorCode status = U_ZERO_ERROR;
   std::unique_ptr<BreakIterator> breakIterator(BreakIterator::createWordInstance(Locale::getUS(), status));
   if (U_FAILURE(status)) {
@@ -17,11 +25,9 @@ void FindWordBoundaries(const v8::FunctionCallbackInfo<v8::Value>& args) {
     return;
   }
 
-  v8::String::Value argString(args[0]);
   icu::UnicodeString unicodeString(false, *argString, argString.length());
   breakIterator->setText(unicodeString);
 
-  v8::Handle<v8::Array> retArray(v8::Array::New(isolate, 0));
   int32_t position = breakIterator->first();
   size_t retArrayPosition = 0;
 
@@ -31,8 +37,6 @@ void FindWordBoundaries(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
     position = static_cast<int32_t>(breakIterator->next());
   }
-
-  args.GetReturnValue().Set(retArray);
 }
 
 void init(v8::Handle<v8::Object> exports) {
