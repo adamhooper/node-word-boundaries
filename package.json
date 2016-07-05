@@ -1,21 +1,20 @@
 {
-  "name": "overview-js-tokenizer",
+  "name": "node-word-boundaries",
   "version": "0.1.0",
-  "description": "Splits text into tokens in as many languages as possible, using libicu",
+  "description": "Find Unicode tr29 word boundaries, using libicu",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "prepublish": "node_modules/.bin/coffee data/generate.coffee"
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/overview/overview-js-tokenizer"
+    "url": "https://github.com/huffpostdata/node-word-boundaries"
   },
   "keywords": [
     "token",
     "word",
-    "tokenize",
-    "tokenizer",
+    "boundaries",
+    "split",
     "natural",
     "language",
     "processing",
@@ -27,16 +26,14 @@
   "author": "Adam Hooper <adam@adamhooper.com>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/overview/overview-js-tokenizer/issues"
+    "url": "https://github.com/huffpostdata/node-word-boundaries/issues"
   },
-  "homepage": "https://github.com/overview/overview-js-tokenizer",
+  "homepage": "https://github.com/huffpostdata/node-word-boundaries",
   "devDependencies": {
-    "chai": "^3.0.0",
-    "coffee-script": "^1.9.3",
-    "mocha": "^2.2.5"
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
   },
   "dependencies": {
-    "bindings": "^1.2.1",
-    "unicode-trie": "^0.3.0"
+    "bindings": "^1.2.1"
   }
 }
